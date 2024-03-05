@@ -26,7 +26,17 @@ also remove the "asset" and replace with static
 
 
     <style>
-        @keyframes fadeInGrow {
+        @media (max-width: 768px) {
+    .header {
+        padding-top: 100px; /* Adjust padding-top for smaller screens */
+    }
+
+}
+    @media (max-width: 768px) {
+  .header .container .infos .title {
+    font-size: 40px; /* Adjust font size for smaller screens */
+  }
+}    @keyframes fadeInGrow {
             0% {
                 opacity: 0;
                 transform: scale(1);
@@ -85,10 +95,18 @@ also remove the "asset" and replace with static
         .about-highlight h3 {
             color: #003c50;
         }
-           00
+        .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    }
         .about-footer {
             font-weight: bold;
         }
+        
         
         @keyframes fadeInUp {
             from {
@@ -100,6 +118,7 @@ also remove the "asset" and replace with static
                 transform: translateY(0);
             }
         }
+        
 
         /* Initial state */
 .animate-on-scroll {
@@ -122,7 +141,7 @@ also remove the "asset" and replace with static
 
 
 <!-- Page navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-image: linear-gradient(135deg,#003c50, #6e8efb, #003c50);" data-spy="affix" data-offset-top="0">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:#003C50;" data-spy="affix" data-offset-top="0">
     <div class="container">   
         <a class="navbar-brand" href="{% url 'index' %}">
             <img src="{% static 'imgs/My project.png' %}" alt="MSA logo" style="height: 69px; box-shadow: none; border: none; filter: none;">  <!-- Corrected image here -->
@@ -165,34 +184,29 @@ also remove the "asset" and replace with static
 
 
 <!-- Main header -->
-<header class="header" id="home" style="background-image: url('static/imgs/msa_pic (1).jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; padding-top: 60px;"> <!-- Adjusted padding-top -->
+<header class="header position-relative" id="home" style="background-image: url('static/imgs/msa_pic (1).jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%;">
+    <!-- Overlay div -->
+    <div class="overlay"></div>
+
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12 order-md-1 order-sm-2">
                 <div class="infos">
-                    <br> <br>
-                    <h6 class="subtitle text-white pt-3 ml-4 ">أهلاً وسهلاً</h6>
-                    <h6 class="title py-2" style="animation: bounceIn 1s; color: white;">The Muslim Student's Association at TRU</h6> <!-- Adjusted padding here -->
+                    <h6 class="subtitle text-white pt-3 ml-4">أهلاً وسهلاً</h6>
+                    <h6 class="title" style="animation: bounceIn 1s; color: white;">The Muslim Student's Association at TRU</h6>
                     <p class="py-2" style="animation: bounceIn 1s; color: white;">An organization for helping Muslim students at TRU</p>
 
-                    <div class="buttons pt-2">
+                    <div class="buttons">
                         <a href="{% url 'prayer' %}">
                             <button class="btn btn-primary rounded">Contact us</button>
                         </a>
                         <a class="btn btn-primary rounded" href="{% url 'prayer' %}">Prayer Times</a>
                     </div>
-
-                    <div class="socials mt-4">
-                        <a class="social-item" href="https://www.facebook.com/TRUMSA"><i class="ti-facebook"></i></a>
-                        <a class="social-item" href="https://youtube.com/@trumsa"><i class="ti-youtube"></i></a>
-                        <a class="social-item" href="https://www.instagram.com/tru_msa"><i class="ti-instagram"></i></a>
-                        <a class="social-item" href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                    </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 text-center">
-                <div class="img-holder pt-3">
-                    <img src="{% static 'imgs/My project.png' %}" alt="MSA LOGO" class="img-fluid" style="max-width: 70%; height: auto; margin-bottom: 170px;">
+            <div class="col-md-6 col-sm-12 order-md-2 order-sm-1 text-center">
+                <div class="img-holder pt-md-3 pt-sm-0">
+                    <img src="{% static 'imgs/My project.png' %}" alt="MSA LOGO" class="img-fluid mx-auto d-block" style="max-width: 90%; height: auto;">
                 </div>
             </div>
         </div>
@@ -214,8 +228,10 @@ also remove the "asset" and replace with static
             <div class="about-content">
                 <p>Welcome to the official website of the Thompson Rivers University Muslim Students Association (MSA TRU). We are a vibrant and diverse community dedicated to fostering an inclusive and welcoming environment for Muslim students at TRU. Here, you'll find information, resources, and a sense of belonging that will enhance your university experience.</p>
                 <div class="about-highlight">
-                    <h3>Who We Are:</h3>
-                    <p>At MSA TRU, our mission is to provide a support system for Muslim students, helping them connect with one another, engage in meaningful activities, and thrive academically and socially. Our organization is led by a dedicated team of executive members who are committed to creating a positive impact within the TRU community.</p>
+                    <h3 class="accordion-trigger">Who We Are:</h3>
+                    <div class="accordion-content">
+                        <p>At MSA TRU, our mission is to provide a support system for Muslim students, helping them connect with one another, engage in meaningful activities, and thrive academically and socially. Our organization is led by a dedicated team of executive members who are committed to creating a positive impact within the TRU community.</p>
+                    </div>
                 </div>
                 <p class="about-footer">Ready to get started? Explore the rest of our website to learn more about MSA TRU and how you can become part of our dynamic community. We look forward to welcoming you!</p>
             </div>
@@ -248,22 +264,18 @@ also remove the "asset" and replace with static
          
             <!-- Animation for the Title -->
             <h6 class="section-title mb-4" style="animation: bounceIn 1.5s;">What We Offer</h6>
-            
-
-  
+        
            
             <div class="row">
                 <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="custom-card card border">
+                    <div class="custom-card">
                         <div class="card-body">
                             <i class="icon ti-crown"></i>
-                            <h5 style="padding: 10px;"><a href="{% url 'prayer' %}">Prayer Services</a></h5>
-                            <p style="padding: 10px;">Access information about prayer spaces, prayer time schedules, and Jummah prayer locations, allowing you to maintain your religious practices .</p>
+                            <h5 style="padding: 10px;"><a href="{% url 'prayer' %}" style="color: white;">Prayer Services</a></h5>
+                            <p style="padding: 10px;">Access information about prayer spaces, prayer time schedules, and Jummah prayer locations, allowing you to maintain your religious practices.</p>
                         </div>
                     </div>
                 </div>
-          
-
                 <div class="col-sm-6 col-md-3 mb-4">
                     <div class="custom-card card border">
                         <div class="card-body">
@@ -296,100 +308,6 @@ also remove the "asset" and replace with static
     </section>
     <!-- End of Section -->
 
-
-
-
-<!-- Event Calender -->
-<section id="testmonial" class="section">
-    <div class="container text-center">
-        <h6 class="subtitle">Event Calendar</h6>
-        <h6 class="section-title mb-4">MSA events</h6>
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
-            </ol>
-            <div class="carousel-inner">
-                <!-- Brothers Halakah Event -->
-                <div class="carousel-item active">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/brothersHalakah.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Brothers Halakah event.</p>
-                            <h1 class="title" style="color: white;">Brothers Halakah</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bowling Event -->
-                <div class="carousel-item">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/bowling.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Bowling event.</p>
-                            <h1 class="title" style="color: white;">Bowling Event</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Islamic Movie Night -->
-                <div class="carousel-item">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/movieNight.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Islamic Movie Night.</p>
-                            <h1 class="title" style="color: white;">Islamic Movie Night</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Iftaar Event -->
-                <div class="carousel-item">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/iftaarEvent-1.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Iftaar event.</p>
-                            <h1 class="title" style="color: white;">Iftaar Event</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Club Day -->
-                <div class="carousel-item">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/clubDay.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Club Day.</p>
-                            <h1 class="title" style="color: white;">Club Day</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dawah Booth -->
-                <div class="carousel-item">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/dawahBooth.jpg'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Dawah Booth.</p>
-                            <h1 class="title" style="color: white;">Dawah Booth</h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Iftar Distribution -->
-                <div class="carousel-item">
-                    <div class="card testmonial-card border" style="background-image: url('static/imgs/iftaarDistribution.png'); background-size: cover; background-color: rgba(255,255,255,0.5);">
-                        <div class="card-body">
-                            <p style="color: white;">Description for Iftar Distribution.</p>
-                            <h1 class="title" style="color: white;">Iftar Distribution</h1>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
 <!-- End of event calender   section -->
 
 
@@ -398,35 +316,20 @@ also remove the "asset" and replace with static
         <div class="container text-center">
             <h6 class="subtitle">MSA Blogs</h6>
             <h6 class="section-title mb-4">Latest News</h6>
-            <p class="mb-5 pb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In alias dignissimos. <br> rerum commodi corrupti, temporibus non quam.</p>
-
+            <p class="mb-5 pb-4">Explore the latest news and updates from MSA.</p>
+    
             <div class="row text-left">
                 <div class="col-md-4">
                     <div class="card border mb-4">
-                        <img src="{% static 'imgs/blog-1.jpg' %}" alt="" class="card-img-top w-100">
+                        <img src="{% static 'imgs/clubDay.jpg' %}" alt="" class="card-img-top w-100">
                         <div class="card-body">
-                            <h5 class="card-title">NEWS 1 </h5>
+                            <h5 class="card-title">NEWS 1</h5>
                             <div class="post-details">
                                 <a href="javascript:void(0)">Posted By: Admin</a>
                                 <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
                                 <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
-                            <a href="javascript:void(0)">Read More..</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border mb-4">
-                        <img src="{% static 'imgs/taraweeh.jpg' %}" alt="" class="card-img-top w-100">
-                        <div class="card-body">
-                            <h5 class="card-title">NEWS 2 </h5>
-                            <div class="post-details">
-                                <a href="javascript:void(0)">Posted By: Admin</a>
-                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
-                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
+                            <p>Dawah Event Held At University</p>
                             <a href="javascript:void(0)">Read More..</a>
                         </div>
                     </div>
@@ -435,13 +338,28 @@ also remove the "asset" and replace with static
                     <div class="card border mb-4">
                         <img src="{% static 'imgs/clubDay.jpg' %}" alt="" class="card-img-top w-100">
                         <div class="card-body">
-                            <h5 class="card-title">NEWS 3 </h5>
+                            <h5 class="card-title">NEWS 2</h5>
                             <div class="post-details">
                                 <a href="javascript:void(0)">Posted By: Admin</a>
                                 <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
                                 <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut ad vel dolorum, iusto velit, minima? Voluptas nemo harum impedit nisi.</p>
+                            <p>Dawah Event Held At University.</p>
+                            <a href="javascript:void(0)">Read More..</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border mb-4">
+                        <img src="{% static 'imgs/clubDay.jpg' %}" alt="" class="card-img-top w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">NEWS 3</h5>
+                            <div class="post-details">
+                                <a href="javascript:void(0)">Posted By: Admin</a>
+                                <a href="javascript:void(0)"><i class="ti-thumb-up"></i> 456</a>
+                                <a href="javascript:void(0)"><i class="ti-comment"></i> 123</a>
+                            </div>
+                            <p>Dawah Event Held At University</p>
                             <a href="javascript:void(0)">Read More..</a>
                         </div>
                     </div>
