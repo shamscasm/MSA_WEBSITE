@@ -25,7 +25,13 @@ also remove the "asset" and replace with static
     <!-- Bootstrap + Steller main styles -->
     <link rel="stylesheet" href="static/css/steller.css">
 
+    <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
 
+    <!-- steller js -->
+    <script src="{% static 'js/steller.js' %}"></script>
     <style>
         @keyframes fadeInGrow {
             0% {
@@ -105,6 +111,97 @@ also remove the "asset" and replace with static
             text-align: center;
             margin-bottom: 20px;
         }
+        .prayer-times-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .prayer-times-table {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            background: #003C50;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .table-row {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .table-row:last-child {
+            border-radius: 0 0 8px 8px;
+            border-bottom: none;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .prayer-times-container {
+            max-width: 800px;
+            /* Adjusted for potentially wider table */
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            /* Ensure table is scrollable on small screens */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 10px;
+        }
+
+        th {
+            background: #003C50;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #eaeaea;
+            /* Highlight row on hover */
+        }
+
+        h3 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 20px;
+
+
+            .current-day {
+                background-color: #004080;
+                /* Or any color you prefer */
+                color: white;
+            }
+        }
     </style>
 
 </head>
@@ -137,7 +234,7 @@ also remove the "asset" and replace with static
                     <li class="nav-item">
                         <a class="nav-link" href="#service">Service</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-items">
                         <a class="nav-link" href="#portfolio">Prayer times </a>
                     </li>
                     <li class="nav-item">
@@ -245,55 +342,8 @@ also remove the "asset" and replace with static
         </div>
     </div>
 
-    <!-- Add any necessary styling here -->
-    <style>
-        .prayer-times-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .prayer-times-table {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            background: #003C50;
-            color: #ffffff;
-            padding: 10px;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .table-row {
-            display: flex;
-            justify-content: space-between;
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-bottom: 1px solid #eeeeee;
-        }
-
-        .table-row:last-child {
-            border-radius: 0 0 8px 8px;
-            border-bottom: none;
-        }
-
-        h3 {
-            text-align: center;
-            color: #333333;
-            margin-bottom: 20px;
-        }
-    </style>
-
     <br> <br> <br> <br>
     <h3>Monthly Prayer Times</h3>
-
 
 
     <div class="prayer-times-container">
@@ -346,58 +396,6 @@ also remove the "asset" and replace with static
             </tbody>
         </table>
     </div>
-    <style>
-        .prayer-times-container {
-            max-width: 800px;
-            /* Adjusted for potentially wider table */
-            margin: auto;
-            padding: 20px;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow-x: auto;
-            /* Ensure table is scrollable on small screens */
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th,
-        td {
-            text-align: left;
-            padding: 10px;
-        }
-
-        th {
-            background: #003C50;
-            color: #ffffff;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #eaeaea;
-            /* Highlight row on hover */
-        }
-
-        h3 {
-            text-align: center;
-            color: #333333;
-            margin-bottom: 20px;
-
-
-            .current-day {
-                background-color: #004080;
-                /* Or any color you prefer */
-                color: white;
-            }
-        }
-    </style>
-
     <!-- Page Footer -->
     <footer class="page-footer">
         <div class="container">
@@ -421,13 +419,7 @@ also remove the "asset" and replace with static
     <!-- End of page footer -->
 
     <!-- core  -->
-    <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
-    <script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
-    <!-- bootstrap 3 affix -->
-    <script src="{% static 'vendors/bootstrap/bootstrap.affix.js' %}"></script>
 
-    <!-- steller js -->
-    <script src="{% static 'js/steller.js' %}"></script>
 
 
 
